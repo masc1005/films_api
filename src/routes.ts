@@ -19,6 +19,7 @@ routes.use(authMiddleware)
 
 routes.post('/films/:userId', films.create)
 routes.get('/films', films.read)
+routes.get('/film/:filmId', films.readOne)
 routes.put('/films', films.update)
 routes.delete('/films', films.delete)
 

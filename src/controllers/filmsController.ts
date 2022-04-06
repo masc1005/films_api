@@ -31,13 +31,31 @@ class Films {
 
   async read(req: Request, res: Response) {
 
-    const items = await prismaClient.films.findMany({
-      include: {
-        Gender: true,
+    const films = await prismaClient.films.findMany({ include: {
+      Gender: true
+    } })
+
+    return res.json(films);
+
+  }
+
+  async readOne(req: Request, res: Response){
+
+    const { filmId } = req.params
+
+    const id = parseInt(filmId)
+
+    const find = await prismaClient.films.findFirst({
+      where: { id: id },
+      include:{ 
+        Gender: true
       }
     })
 
-    return res.json(items);
+    delete find.userId
+    delete find.Gender.id
+
+    return res.json(find)
 
   }
 
