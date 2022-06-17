@@ -1,31 +1,31 @@
-import { Request, Response } from 'express'
-import { prismaClient } from '../database/prismaClient';
+// import { Request, Response } from 'express'
+// import { prismaClient } from '../database/prismaClient';
 
 
-class Gender {
+// class Gender {
 
-    async create(req: Request, res: Response) {
+//     async create(req: Request, res: Response) {
 
-        const { gender } = req.body
+//         const { gender } = req.body
 
-        const save = await prismaClient.gender.create({
-            data: {
-                name: gender
-            }
-        })
+//         const save = await prismaClient.gender.create({
+//             data: {
+//                 name: gender
+//             }
+//         })
 
-        return res.json(save)
+//         return res.json(save)
 
-    }
+//     }
 
-    async read(req: Request, res: Response) {
+//     async read(req: Request, res: Response) {
 
-        const response = await prismaClient.gender.findMany({})
+//         const response = await prismaClient.gender.findMany({})
 
-        return res.json(response)
+//         return res.json(response)
 
-    }
+//     }
 
-}
+// }
 
-export default new Gender()
+// export default new Gender()

@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts",
+    "dev": "ts-node src/index.ts",
     "build": "tsc",
     "start": "nodemon build/index.js",
     "migrate": "prisma migrate dev",

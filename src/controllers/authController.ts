@@ -7,7 +7,7 @@ class Auth {
 
     async authenticate(req: Request, res: Response) {
 
-        const { email, pwd } = req.body
+        const { email, password } = req.body
 
         const user = await prismaClient.user.findFirst({ where: { email: email } })
 
@@ -15,7 +15,7 @@ class Auth {
             return res.sendStatus(401)
         }
 
-        const isValid = await bcryptjs.compare(pwd, user.password)
+        const isValid = await bcryptjs.compare(password, user.password)
 
         if (!isValid) {
             return res.sendStatus(401)
