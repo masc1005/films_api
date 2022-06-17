@@ -11,6 +11,7 @@ const routes = Router();
 
 
 routes.post('/user', user.create)
+routes.get('/user', user.read)
 
 routes.post('/login', login.authenticate)
 
