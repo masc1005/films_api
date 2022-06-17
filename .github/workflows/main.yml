@@ -31,7 +31,7 @@ jobs:
       - name: build      
         run:  yarn tsc
         
-      - uses: appleboy/ssh-action@v0.1.4
+      - uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -41,7 +41,7 @@ jobs:
           target: "colleges"
                     
       # - name: update api      
-      #   uses: appleboy/ssh-action@master      
+      #   uses: appleboy/scp-action@master
       #   with:
       #     host: ${{ secrets.SSH_HOST }}
       #     username: ${{ secrets.SSH_USER }}
