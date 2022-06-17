@@ -10,6 +10,7 @@ jobs:
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       SERVER_PORT: ${{ secrets.SERVER_PORT }}
+      AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
     runs-on: ubuntu-latest    
     steps:
       - uses: actions/checkout@v3
