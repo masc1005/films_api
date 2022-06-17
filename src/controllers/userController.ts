@@ -23,6 +23,14 @@ class User {
     return res.json(user);
   }
 
+  async read(req: Request, res: Response) {
+
+    const data = await prismaClient.user.findMany({})
+
+    res.send({data}).status(200).end()
+
+  }
+
 
 
 
