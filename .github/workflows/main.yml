@@ -39,13 +39,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           source: "., !node_modules"
           target: "films"
-                    
-      - name: update api      
-        uses: appleboy/ssh-action@master      
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}          
-          script: cd films && yarn && yarn generate && yarn build && pm2 restart colleges      
-
+          script: |
+            whoami
+            echo "$HOST"
+            ls -a
