@@ -47,4 +47,10 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}          
-          script: cd ./films/ && yarn && yarn generate && pm2 restart colleges      
+          script: |
+            cd ./films/ 
+            yarn 
+            yarn generate
+            yarn build
+            pm2 restart 0
+            sudo service nginx restart        
