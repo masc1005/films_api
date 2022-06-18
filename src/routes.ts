@@ -1,31 +1,18 @@
-import { Router } from 'express'
-
-import user from './controllers/userController'
-// import films from './controllers/filmsController'
-// import gender from './controllers/genderController'
-import login from './controllers/authController'
-import authMiddleware from './middlewares/authMiddleware'
-
+import { Router } from "express";
+import { users, auth } from "./controllers";
+import { authMiddleware } from "./middlewares";
 
 const routes = Router();
 
+routes.get("/", (req, res) => {
+  res.send("Olá");
+});
 
-routes.post('/user', user.create)
-routes.get('/user', user.read)
+routes.post("/create", users.create);
+routes.post("/login", auth.Authenticate);
 
-routes.post('/login', login.authenticate)
+routes.use(authMiddleware);
 
-
-routes.use(authMiddleware)
-
-// routes.post('/films/:userId', films.create)
-// routes.get('/films', films.read)
-// routes.get('/film/:filmId', films.readOne)
-// routes.put('/films', films.update)
-// routes.delete('/films', films.delete)
-
-// routes.post('/gender', gender.create)
-// routes.get('/gender', gender.read)
-
+routes.get("/home", auth.Index);
 
 export default routes;
