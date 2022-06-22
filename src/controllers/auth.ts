@@ -6,7 +6,7 @@ import { prisma } from "../database";
 
 class AuthController {
   async Index(req: Request, res: Response, next: NextFunction) {
-    return res.send({ userId: req.userId });
+    return res.send({ userName: req.userName });
   }
 
   async Authenticate(req: Request, res: Response) {
@@ -24,11 +24,15 @@ class AuthController {
       res.send({ msg: "Invalid Password" }).status(401).end();
     }
 
-    const token = jwt.sign({ id: userAuth.id }, process.env.AUTH_SECRET, {
-      expiresIn: "1d",
-    });
+    const token = jwt.sign(
+      { id: userAuth.id, name: userAuth.name },
+      process.env.AUTH_SECRET,
+      {
+        expiresIn: "1d",
+      }
+    );
 
-    delete userAuth.password
+    delete userAuth.password;
 
     return res.json({
       userAuth,

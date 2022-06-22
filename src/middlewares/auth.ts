@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 interface tokenData {
-  id: string;
+  name: string;
   iat: number;
   exp: number;
 }
@@ -23,9 +23,9 @@ export default function authMiddleware(
   try {
     const data = jwt.verify(token, process.env.AUTH_SECRET);
 
-    const { id } = data as tokenData;
+    const { name } = data as tokenData;
 
-    req.userId = id;
+    req.userName = name;
 
     return next();
   } catch (error) {
